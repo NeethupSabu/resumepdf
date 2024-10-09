@@ -9,8 +9,6 @@ import 'package:resumepdf_app/Widgets/Experience.dart';
 import 'package:resumepdf_app/Widgets/HeaderSection.dart';
 import 'package:resumepdf_app/Widgets/Objective.dart';
 
-// Import extracted widgets
-
 class ResumeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -30,9 +28,11 @@ class ResumeScreen extends StatelessWidget {
   Future<Uint8List> generateResumePdf() async {
     final pdf = pw.Document();
 
-    // Define custom styles
-    final titleStyle =
-        pw.TextStyle(fontSize: 24, fontWeight: pw.FontWeight.bold);
+    final titleStyle = pw.TextStyle(
+      fontSize: 24,
+      fontWeight: pw.FontWeight.bold,
+      color: PdfColors.lightBlueAccent,
+    );
     final subtitleStyle =
         pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold);
     final normalText = pw.TextStyle(fontSize: 14);
@@ -41,6 +41,7 @@ class ResumeScreen extends StatelessWidget {
     final headerStyle = pw.TextStyle(
         fontSize: 16,
         fontWeight: pw.FontWeight.bold,
+        color: PdfColors.lightBlueAccent700,
         decoration: pw.TextDecoration.underline);
 
     pdf.addPage(
@@ -48,7 +49,6 @@ class ResumeScreen extends StatelessWidget {
         pageFormat: PdfPageFormat.a4,
         margin: pw.EdgeInsets.only(top: 40, left: 20, right: 20),
         build: (context) => [
-          // Use extracted widgets here
           HeaderSection.buildHeader(titleStyle, normalText),
           pw.SizedBox(height: 10),
           pw.Divider(height: 20, thickness: 5),
